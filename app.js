@@ -40,30 +40,6 @@ async function enviarMsg(telefone, msg) {
   }
 }
 
-
-/* 
-cron.schedule('* * * * *', () => {
-  console.log('Cron rodando às:', new Date().toLocaleString());  // Log pra confirmar
-  const hoje = new Date().toISOString().slice(5,10);  // MM-DD
-  db.query('SELECT * FROM contatos', (err, contatos) => {
-    if (err) return console.error('Erro no DB:', err);
-    console.log('Contatos encontrados:', contatos);  // Mostra os contatos
-    contatos.forEach(c => {
-      const niver = c.data_niver.toISOString().slice(5,10);
-      if (niver === hoje) {
-        console.log(`Niver hoje: ${c.nome}, telefone: ${c.telefone}`);  // Debug
-        db.query('SELECT msg_default FROM grupos_msgs WHERE grupo = ?', [c.grupo], (err, grupo) => {
-          if (err) return console.error('Erro no grupo:', err);
-          let msg = c.msg_custom || (grupo[0] ? grupo[0].msg_default : 'Feliz aniversário! 🎂');
-          msg = msg.replace('[nome]', c.nome);
-          console.log(`Enviando: ${msg} pra ${c.telefone}`);  // Debug antes de enviar
-          enviarMsg(c.telefone, msg);
-        });
-      }
-    });
-  });
-}); codigo antigo */ 
-
 // Checar e enviar às 8h
 cron.schedule('* * * * *', () => {
   console.log('Cron rodando às:', new Date().toLocaleString());
